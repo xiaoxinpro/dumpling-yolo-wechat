@@ -30,6 +30,7 @@ project.private.config.json
 .env
 .env.local
 .env.*.local
+config.js
 
 # 忽略缓存目录
 .cache/
