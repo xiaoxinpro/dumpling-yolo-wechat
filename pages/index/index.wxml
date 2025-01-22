@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="image-container">
+    <image wx:if="{{tempFilePath}}" class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
+    <view wx:else class="placeholder">
+      <text class="placeholder-text">请选择图片进行检测</text>
+    </view>
+  </view>
+  <view wx:if="{{result}}" class="result">
+    <view class="result-text">检测结果</view>
+    <view class="result-value">饺子数量 {{result}} 个</view>
+  </view>
+  <button class="upload-button" bindtap="chooseImage" disabled="{{loading}}">
+    {{loading ? '正在检测中...' : '选择图片并检测'}}
+  </button>
+</view>
