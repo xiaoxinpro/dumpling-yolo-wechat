@@ -28,7 +28,7 @@ Page({
       mask: true // 防止用户点击其他地方
     });
     wx.uploadFile({
-      url: 'https://', // 替换为你的API地址
+      url: getApp().globalData.config.apiUrl + '/detect/json', // 替换为你的API地址
       filePath: that.data.tempFilePath,
       name: 'image',
       formData: {},
