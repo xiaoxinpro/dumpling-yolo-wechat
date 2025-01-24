@@ -17,3 +17,4 @@
     {{loading ? '正在检测中...' : '选择饺子图片'}}
   </button>
 </view>
+<view class="version">{{version}}</view>

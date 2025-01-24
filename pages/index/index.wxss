@@ -102,3 +102,9 @@ page {
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+.version {
+  margin-top: 10px;
+  font-size: 11px;
+  color: #999;
+}

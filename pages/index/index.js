@@ -4,7 +4,16 @@ Page({
     tempFilePath: '',
     result: '',
     error: '',
+    version: '',
     loading: false
+  },
+  onLoad() {
+    const accountInfo = wx.getAccountInfoSync();
+    const appVersion = accountInfo.miniProgram.version;
+    const envVersion = accountInfo.miniProgram.envVersion;
+    this.setData({
+      version: appVersion ? appVersion : envVersion
+    });
   },
   chooseImage: function () {
     const that = this;
