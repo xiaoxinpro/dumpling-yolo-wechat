@@ -4,6 +4,8 @@
 
 这是一个基于微信小程序的图像识别应用，旨在通过上传图片自动检测图片中的饺子数量。用户可以通过选择本地图片或拍照上传，程序会调用后端 [dumpling-yolo-server](https://github.com/xiaoxinpro/dumpling-yolo-server) 图像识别接口，快速返回图片中饺子的数量。该小程序界面简洁美观，操作简单，适合快速检测和展示结果。
 
+![](https://image.xiaoxin.pro/2025/01/24/1144d8bbfa2c9.jpg)
+
 ## 主要功能：
 
 1. **图片上传**：
