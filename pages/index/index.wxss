@@ -64,6 +64,12 @@ page {
   width: 100%; 
 }
 
+.result-error {
+  font-size: 24px;
+  color: #e64340;
+  font-weight: bold;
+}
+
 .result-text {
   font-size: 18px;
   color: #333;

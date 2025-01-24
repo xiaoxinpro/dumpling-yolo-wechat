@@ -3,6 +3,7 @@ Page({
   data: {
     tempFilePath: '',
     result: '',
+    error: '',
     loading: false
   },
   chooseImage: function () {
@@ -36,13 +37,15 @@ Page({
         const data = JSON.parse(res.data);
         console.log(data);
         that.setData({
+          error: data.length > 0 ? '' : '图片中未检测到饺子',
           result: data.length
         });
       },
       fail: function (err) {
         console.error(err);
         that.setData({
-          result: '检测失败，请重试'
+          error: '检测失败，请重试',
+          result: ''
         });
       },
       complete: function () {

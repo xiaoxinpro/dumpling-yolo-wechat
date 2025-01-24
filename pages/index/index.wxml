@@ -6,7 +6,10 @@
       <text class="placeholder-text">请选择饺子图片进行检测</text>
     </view>
   </view>
-  <view wx:if="{{result}}" class="result">
+  <view wx:if="{{error}}" class="result">
+    <view class="result-error">{{error}}</view>
+  </view>
+  <view wx:elif="{{result}}" class="result">
     <view class="result-text">检测结果</view>
     <view class="result-value">饺子数量 {{result}} 个</view>
   </view>
