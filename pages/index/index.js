@@ -99,19 +99,23 @@ Page({
           // 设置 canvas 的宽高
           canvas.width = containerWidth;
           canvas.height = containerHeight;
-  
+
+          // 根据图片实际尺寸和容器尺寸计算缩放比例与偏移量
+          const scaleX = containerWidth / imageWidth;
+          const scaleY = containerHeight / imageHeight;
+          const scale  = Math.min(scaleX, scaleY);
+          const offsetX = (scale == scaleY) ? (containerWidth - imageWidth * scale)/2 : 0;
+          const offsetY = (scale == scaleX) ? (containerHeight - imageHeight * scale)/2 : 0;
+
           // 清空画布
           ctx.clearRect(0, 0, containerWidth, containerHeight);
   
           that.data.boxes.forEach(box => {
-            // 根据图片实际尺寸和容器尺寸计算缩放比例
-            const scaleX = containerWidth / imageWidth;
-            const scaleY = containerHeight / imageHeight;
-  
-            const x1 = box.box.x1 * scaleX;
-            const y1 = box.box.y1 * scaleY;
-            const x2 = box.box.x2 * scaleX;
-            const y2 = box.box.y2 * scaleY;
+            // 计算边框坐标
+            const x1 = offsetX + box.box.x1 * scale;
+            const y1 = offsetY + box.box.y1 * scale;
+            const x2 = offsetX + box.box.x2 * scale;
+            const y2 = offsetY + box.box.y2 * scale;
   
             // 绘制绿色框
             ctx.strokeStyle = '#00ff00';
