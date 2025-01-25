@@ -1,9 +1,9 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="image-container">
+  <view class="image-container" bindtap="toggleCanvas">
     <block wx:if="{{tempFilePath}}">
       <image class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
-      <canvas class="canvas" id="resultCanvas" type="2d" />
+      <canvas hidden="{{!showCanvas}}" class="canvas" id="resultCanvas" type="2d" />
     </block>
     <view wx:else class="placeholder">
       <text class="placeholder-text">请选择饺子图片进行检测</text>

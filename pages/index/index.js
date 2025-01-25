@@ -6,6 +6,7 @@ Page({
     error: '',
     version: '',
     loading: false,
+    showCanvas: false,
     boxes: []
   },
   onLoad() {
@@ -86,6 +87,12 @@ Page({
       canvasQuery.select('#resultCanvas')
         .fields({ node: true, size: true })
         .exec(async res => {
+          // 检查 canvas 是否存在
+          if (!res[0] || !res[0].node) {
+            console.warn('Canvas is hidden or not found');
+            return;
+          }
+  
           const canvas = res[0].node;
           const ctx = canvas.getContext('2d');
   
@@ -118,5 +125,11 @@ Page({
           });
         });
     }).exec();
+  },
+  toggleCanvas: function () {
+    // 切换 canvas 的显示/隐藏状态
+    this.setData({
+      showCanvas: !this.data.showCanvas
+    });
   }
 });
