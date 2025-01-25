@@ -11,7 +11,10 @@
   </view>
   <view wx:elif="{{result}}" class="result">
     <view class="result-text">检测结果</view>
-    <view class="result-value">饺子数量 {{result}} 个</view>
+    <view class="result-value">
+      <text wx:if="{{result < 5}}">饺子数量太少</text>
+      <text wx:else>饺子数量 {{result}} 个</text>
+    </view>
   </view>
   <button class="upload-button" bindtap="chooseImage" disabled="{{loading}}">
     {{loading ? '正在检测中...' : '选择饺子图片'}}

@@ -23,14 +23,11 @@ Page({
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
-        that.setData({
-          tempFilePath: res.tempFiles[0].tempFilePath
-        },);
-        that.detectDumplings(); // 直接调用检测接口
+        that.detectDumplings(res.tempFiles[0].tempFilePath);
       }
     });
   },
-  detectDumplings: function () {
+  detectDumplings: function (imageFilePath) {
     const that = this;
     that.setData({ result: '', loading: true });
     wx.showLoading({
@@ -39,13 +36,14 @@ Page({
     });
     wx.uploadFile({
       url: getApp().globalData.config.apiUrl + '/detect/json', // 替换为你的API地址
-      filePath: that.data.tempFilePath,
+      filePath: imageFilePath,
       name: 'image',
       formData: {},
       success: function (res) {
         const data = JSON.parse(res.data);
         console.log(data);
         that.setData({
+          tempFilePath: data.length >= 5 ? imageFilePath : '',
           error: data.length > 0 ? '' : '图片中未检测到饺子',
           result: data.length
         });
