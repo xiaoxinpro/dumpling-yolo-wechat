@@ -84,12 +84,12 @@ page {
 
 .upload-button {
   width: 100%;
-  padding: 20px;
+  padding: 16px;
   background-color: #1aad19;
   color: #fff;
   border: none;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
