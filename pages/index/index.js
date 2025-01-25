@@ -77,39 +77,46 @@ Page({
   drawBoxes: function (imageWidth, imageHeight) {
     const that = this;
     const query = wx.createSelectorQuery();
-    query.select('.image-container').boundingClientRect(rect => {
+    query.select('.image-container').boundingClientRect(async rect => {
       const containerWidth = rect.width;
       const containerHeight = rect.height;
-
-      // 使用 wx.createCanvasContext 创建绘图上下文
-      const ctx = wx.createCanvasContext('resultCanvas');
-
-      // 清空画布
-      ctx.clearRect(0, 0, containerWidth, containerHeight);
-
-      that.data.boxes.forEach(box => {
-        // 根据图片实际尺寸和容器尺寸计算缩放比例
-        const scaleX = containerWidth / imageWidth;
-        const scaleY = containerHeight / imageHeight;
-
-        const x1 = box.box.x1 * scaleX;
-        const y1 = box.box.y1 * scaleY;
-        const x2 = box.box.x2 * scaleX;
-        const y2 = box.box.y2 * scaleY;
-
-        // 绘制绿色框
-        ctx.setStrokeStyle('#00ff00');
-        ctx.setLineWidth(2);
-        ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
-
-        // 显示 confidence 数值
-        ctx.setFillStyle('#00ff00');
-        ctx.setFontSize(10);
-        ctx.fillText(`${box.confidence.toFixed(2)}`, x1 + 5, y1 + 10);
-      });
-
-      // 绘制到画布
-      ctx.draw();
+  
+      // 使用 wx.createSelectorQuery 获取 canvas 节点
+      const canvasQuery = wx.createSelectorQuery();
+      canvasQuery.select('#resultCanvas')
+        .fields({ node: true, size: true })
+        .exec(async res => {
+          const canvas = res[0].node;
+          const ctx = canvas.getContext('2d');
+  
+          // 设置 canvas 的宽高
+          canvas.width = containerWidth;
+          canvas.height = containerHeight;
+  
+          // 清空画布
+          ctx.clearRect(0, 0, containerWidth, containerHeight);
+  
+          that.data.boxes.forEach(box => {
+            // 根据图片实际尺寸和容器尺寸计算缩放比例
+            const scaleX = containerWidth / imageWidth;
+            const scaleY = containerHeight / imageHeight;
+  
+            const x1 = box.box.x1 * scaleX;
+            const y1 = box.box.y1 * scaleY;
+            const x2 = box.box.x2 * scaleX;
+            const y2 = box.box.y2 * scaleY;
+  
+            // 绘制绿色框
+            ctx.strokeStyle = '#00ff00';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(x1, y1, x2 - x1, y2 - y1);
+  
+            // 显示 confidence 数值
+            ctx.fillStyle = '#00ff00';
+            ctx.font = '10px sans-serif';
+            ctx.fillText(`${box.confidence.toFixed(2)}`, x1 + 5, y1 + 10);
+          });
+        });
     }).exec();
   }
 });

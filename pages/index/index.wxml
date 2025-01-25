@@ -3,7 +3,7 @@
   <view class="image-container">
     <block wx:if="{{tempFilePath}}">
       <image class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
-      <canvas class="canvas" canvas-id="resultCanvas"></canvas>
+      <canvas class="canvas" id="resultCanvas" type="2d" />
     </block>
     <view wx:else class="placeholder">
       <text class="placeholder-text">请选择饺子图片进行检测</text>
