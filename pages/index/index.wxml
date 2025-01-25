@@ -1,7 +1,10 @@
 <!--index.wxml-->
 <view class="container">
   <view class="image-container">
-    <image wx:if="{{tempFilePath}}" class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
+    <block wx:if="{{tempFilePath}}">
+      <image class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
+      <canvas class="canvas" canvas-id="resultCanvas"></canvas>
+    </block>
     <view wx:else class="placeholder">
       <text class="placeholder-text">请选择饺子图片进行检测</text>
     </view>
