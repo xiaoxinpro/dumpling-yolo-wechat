@@ -5,7 +5,7 @@
       <image class="uploaded-image" src="{{tempFilePath}}" mode="aspectFit"></image>
       <canvas hidden="{{!showCanvas}}" class="canvas" id="resultCanvas" type="2d" />
     </block>
-    <view wx:else class="placeholder">
+    <view wx:else class="placeholder" bindtap="chooseImage">
       <text class="placeholder-text">请选择饺子图片进行检测</text>
     </view>
   </view>
