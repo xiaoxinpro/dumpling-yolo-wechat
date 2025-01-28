@@ -125,7 +125,7 @@ Page({
             // 显示 confidence 数值
             ctx.fillStyle = '#00ff00';
             ctx.font = '10px sans-serif';
-            ctx.fillText(`${box.confidence.toFixed(2)}`, x1 + 5, y1 + 10);
+            ctx.fillText(`${box.confidence.toFixed(2)}`, x1 + 2, y1 + 10);
           });
         });
     }).exec();
