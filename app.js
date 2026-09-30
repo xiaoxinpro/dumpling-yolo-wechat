@@ -12,6 +12,9 @@ App({
     try {
       // 尝试加载 config.js
       const config = require('./config.js');
+      if (!config || typeof config.apiUrl !== 'string' || !config.apiUrl.trim()) {
+        throw new Error('config.js 中缺少有效的 apiUrl');
+      }
       this.globalData.config = config; // 加载成功，赋值到 globalData
       console.log('配置文件加载成功:', config);
     } catch (error) {
